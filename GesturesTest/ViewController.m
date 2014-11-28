@@ -189,7 +189,15 @@
 -(void)handePanGesture:(UIPanGestureRecognizer*) tapGesture{
    NSLog(@"handePanGesture %@", NSStringFromCGPoint([tapGesture locationInView:self.view]));
     
+    CGPoint pointOnView = [tapGesture translationInView:self.view];
+    
+    self.viewSquare.center=CGPointMake(self.viewSquare.center.x+pointOnView.x, self.viewSquare.center.y+ pointOnView.y);
+    
+    [tapGesture setTranslation:CGPointMake(0, 0) inView:self.viewSquare];
+    
+    /*
     CGPoint pointOnView = [tapGesture locationInView:self.view];
+    
     if([(UIPanGestureRecognizer*)tapGesture state] == UIGestureRecognizerStateBegan) {
         NSLog(@"UIGestureRecognizerStateBegan");
         [self pointOnView:tapGesture];
@@ -198,7 +206,7 @@
         NSLog(@"UIGestureRecognizerStateChanged");
         self.viewSquare.center = CGPointMake(pointOnView.x + touchPoint.x, pointOnView.y + touchPoint.y);
     }
-   
+   */
 }
 
 -(void) pointOnView:(UIPanGestureRecognizer*) tapGesture{
